@@ -1,5 +1,10 @@
 ---
 
+- debug:
+    msg:
+      - "GALAXY_USER Ansible user: '{{ ansible_user_id }}'  "
+      - "GALAXY_USER galaxy_user: '{{ galaxy_user }}'  "
+
 - name: Create users
   block:
 

@@ -91,13 +91,17 @@ galaxy_dirs:
   - "{{ galaxy_tool_dependency_dir }}"
   - "{{ galaxy_file_path }}"
   - "{{ galaxy_job_working_directory }}"
-
-# Directories to create as the privilege separated user if galaxy_manage_paths is enabled
-galaxy_privsep_dirs:
   - "{{ galaxy_venv_dir }}"
   - "{{ galaxy_server_dir }}"
   - "{{ galaxy_config_dir }}"
   - "{{ galaxy_local_tools_dir }}"
+
+# Directories to create as the privilege separated user if galaxy_manage_paths is enabled
+galaxy_privsep_dirs: {}
+  #- "{{ galaxy_venv_dir }}"
+  #- "{{ galaxy_server_dir }}"
+  #- "{{ galaxy_config_dir }}"
+  #- "{{ galaxy_local_tools_dir }}"
 
 # Local (relative to playbook) path to local tools
 galaxy_local_tools_src_dir: files/galaxy/tools
@@ -153,7 +157,9 @@ galaxy_requirements_file: "{{ galaxy_server_dir }}/lib/galaxy/dependencies/pinne
 galaxy_static_dir: "{{ galaxy_server_dir }}/static"
 
 # Galaxy config file can either be 'ini-paste' (old style) or 'yaml'
-galaxy_config_style: "ini-paste"
+# Nikolay USIT
+#galaxy_config_style: "ini-paste"
+galaxy_config_style: "yaml"
 galaxy_config_file_basename: "galaxy.{{ 'yml' if galaxy_config_style in ('yaml', 'yml') else 'ini' }}"
 galaxy_config_file_template: "{{ galaxy_config_file_basename }}.j2"
 galaxy_config_file: "{{ galaxy_config_dir }}/{{ galaxy_config_file_basename }}"
@@ -213,6 +219,12 @@ galaxy_mutable_configs:
     dest: "{{ galaxy_config_merged[galaxy_app_config_section].shed_data_manager_config_file }}"
   - src: "{{ galaxy_server_dir }}/config/shed_tool_data_table_conf.xml.sample"
     dest: "{{ galaxy_config_merged[galaxy_app_config_section].shed_tool_data_table_config }}"
+    
+# Nikolay    
+# Automatically set start pages
+galaxy_default_start_welcome:
+  - src: "{{ galaxy_server_dir }}/static/welcome.html.sample"
+    dest: "{{ galaxy_server_dir }}/static/welcome.html"
 
 galaxy_config_error_email_to: "{{ galaxy_config_merged[galaxy_app_config_section].error_email_to | default('') }}"
 galaxy_config_instance_resource_url: "{{ galaxy_config_merged[galaxy_app_config_section].instance_resource_url | default('') }}"

@@ -19,11 +19,13 @@
   import_tasks: layout.yml
   tags: always
 
-- name: Include user creation tasks
-  include_tasks: user.yml
-  when: galaxy_create_user or galaxy_create_privsep_user
-  tags:
-    - galaxy_create_user
+# Nikolay USIT - comment, RHEL8 cfengine does not allow editing of /etc/passw
+
+#- name: Include user creation tasks
+  #include_tasks: user.yml
+  #when: galaxy_create_user or galaxy_create_privsep_user
+  #tags:
+    #- galaxy_create_user
 
 - name: Include path management tasks
   include_tasks: paths.yml
@@ -45,6 +47,12 @@
   include_tasks: static_setup.yml
   when: galaxy_manage_static_setup
   tags: galaxy_config_files
+  
+  # Nikolay 
+- name: Include start-page tasks
+  include_tasks: start-page.yml
+  when: galaxy_manage_static_setup
+  tags: galaxy_default_start_welcome
 
 - name: Include dependency setup tasks
   include_tasks: dependencies.yml
