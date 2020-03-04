@@ -1,9 +1,9 @@
-- hosts: galaxyservers
+- hosts: immunohub_server
   become: true
   pre_tasks:
     - name: Install Dependencies
       package:
-        name: ['git', 'make', 'python-psycopg2', 'python-virtualenv', 'bzip2']
+        name: ['git', 'make', 'python3-psycopg2', 'python3-virtualenv.noarch', 'bzip2', 'gcc']
     - name: Print ansible_os_family
       debug: var=ansible_os_family
   handlers:
@@ -19,4 +19,6 @@
     - geerlingguy.pip
     - galaxyproject.galaxy
     - uchida.miniconda
-    - usegalaxy-eu.supervisor
+    - role: usegalaxy-eu.supervisor
+      become: true
+      become_user: root

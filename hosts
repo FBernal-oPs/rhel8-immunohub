@@ -1,12 +1,13 @@
-# This is the default ansible 'hosts' file.
+# This is the IMMUNOHUB SERVER ansible 'hosts' file.
 #
-# It should live in /etc/ansible/hosts
+# It shall be called on the command line with 
 #
-#   - Comments begin with the '#' character
-#   - Blank lines are ignored
-#   - Groups of hosts are delimited by [header] elements
-#   - You can enter hostnames or ip addresses
-#   - A hostname/ip can be a member of multiple groups
+# ansible-playbook --ask-vault-pass --extra-vars '@passwd.yml' galaxy-playbook.yaml -i ./hosts
+#
 
-[galaxyservers]
-78.128.250.148 ansible_connection=ssh ansible_ssh_private_key_file=/uio/kant/usit-ft-u1/nikolaiv/EGI/5sept.pem ansible_become=yes ansible_user=centos
+
+[immunohub_server]
+129.240.189.178
+
+# [immunohub_server:vars]
+# The following variables have been put to ./group_vars/immunohub_server.yaml

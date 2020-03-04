@@ -1,0 +1,98 @@
+# https://galaxyproject.github.io/training-material/topics/admin/tutorials/ansible-galaxy/tutorial.html#cloning-galaxy
+
+# host variables
+ansible_connection: ssh
+ansible_ssh_private_key_file: "/uio/kant/usit-ft-u1/nikolaiv/galaxy-ImmunoHub-playbooks/certificates/ssh_certs/id_rsa"
+#ansible_become: yes
+#ansible_become_user: "root"
+#ansible_user: "nikolaiv"
+#ansible_become_method: sudo
+#ansible_become_pass: "{{ immunohub_server_sudo_pass }}"
+become: yes
+become_user: "root"
+ansible_user: "nikolaiv"
+ansible_become_method: sudo
+ansible_become_pass: "{{ immunohub_server_sudo_pass }}"
+
+# PostgreSQL
+postgresql_objects_users:
+  - name: galaxy
+    password: null
+postgresql_objects_databases:
+  - name: galaxy
+    owner: galaxy
+postgresql_pg_hba_local_socket : true
+
+# Galaxy
+# compare the two following with default/main.yaml (false there)
+galaxy_create_user: no
+galaxy_separate_privileges: no
+galaxy_manage_paths: yes
+galaxy_manage_mutable_setup: yes
+galaxy_manage_database: yes
+galaxy_fetch_dependencies: yes
+galaxy_build_client: yes
+galaxy_layout: root-dir
+galaxy_root: /srv/galaxy # from the galaxy tutorial - to change it - use 'galaxy_server_dir' instead
+galaxy_user: {name: galaxy, shell: /bin/bash}
+galaxy_commit_id: release_19.05 # from the galaxy tutorial
+galaxy_config_style: yaml
+galaxy_force_checkout: true
+miniconda_prefix: "{{ galaxy_tool_dependency_dir }}/_conda"
+
+
+galaxy_config: # from the galaxy tutorial
+  galaxy:
+    brand: "Immunohub Galaxy Instance"
+    admin_users: nikolaiv@uio.no
+    database_connection: "postgresql:///galaxy?host=/var/run/postgresql"
+    file_path: /data
+    check_migrate_tools: false
+    shed_tool_data_dir: "{{ galaxy_mutable_data_dir }}/tool-data"
+  uwsgi:
+    # Default values
+    http: 0.0.0.0:8080
+    buffer-size: 16384
+    processes: 1
+    threads: 4
+    offload-threads: 2
+    static-map:
+      - /static/style={{ galaxy_server_dir }}/static/style/blue
+      - /static={{ galaxy_server_dir }}/static
+    master: true
+    virtualenv: "{{ galaxy_venv_dir }}"
+    pythonpath: "{{ galaxy_server_dir }}/lib"
+    module: galaxy.webapps.galaxy.buildapp:uwsgi_app()
+    thunder-lock: true
+    die-on-term: true
+    hook-master-start:
+      - unix_signal:2 gracefully_kill_them_all
+      - unix_signal:15 gracefully_kill_them_all
+    py-call-osafterfork: true
+    enable-threads: true
+    # Our additions
+    mule:
+      - lib/galaxy/main.py
+      - lib/galaxy/main.py
+    farm: job-handlers:1,2
+
+# Automatically restart Galaxy by calling a handler named 'Restart
+# Galaxy', whenever the server changes.
+galaxy_restart_handler_name: Restart Galaxy
+
+# supervisord
+supervisor_socket_user: galaxy
+supervisor_socket_chown: galaxy
+supervisor_programs:
+  - name: galaxy
+    state: present
+    command: "uwsgi --yaml {{ galaxy_config_dir }}/galaxy.yml"
+    configuration: |
+      autostart=true
+      autorestart=true
+      startretries=1
+      startsecs=10
+      user=galaxy
+      umask=022
+      directory={{ galaxy_server_dir }}
+      environment=HOME={{ galaxy_mutable_data_dir }},VIRTUAL_ENV={{ galaxy_venv_dir }},PATH={{ galaxy_venv_dir }}/bin:%(ENV_PATH)s
