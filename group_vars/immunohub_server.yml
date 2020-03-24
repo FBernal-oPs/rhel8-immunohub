@@ -39,16 +39,28 @@ galaxy_commit_id: release_19.05 # from the galaxy tutorial
 galaxy_config_style: yaml
 galaxy_force_checkout: true
 miniconda_prefix: "{{ galaxy_tool_dependency_dir }}/_conda"
+#galaxy_tool_dependency_dir: "{{ galaxy_mutable_data_dir }}/dependencies"
 
 
 galaxy_config: # from the galaxy tutorial
   galaxy:
     brand: "Immunohub Galaxy Instance"
-    admin_users: nikolaiv@uio.no
+    admin_users: nikolaiv@uio.no,n.a.vazov@usit.uio.no,radmilko@ifi.uio.no,milenpa@student.matnat.uio.no
     database_connection: "postgresql:///galaxy?host=/var/run/postgresql"
     file_path: /data
     check_migrate_tools: false
     shed_tool_data_dir: "{{ galaxy_mutable_data_dir }}/tool-data"
+    ## NEW 23 march added 'galaxy_tool_dependency_dir' to galaxy vars above 
+    ## or in tasks/layout.yml
+    integrated_tool_panel_config: "integrated_tool_panel.xml"
+    dependency_resolvers_config_file: "config/dependency_resolvers_conf.xml"
+    conda_exec: "{{ galaxy_tool_dependency_dir }}/_conda/bin/conda"
+    conda_debug: "true"
+    conda_ensure_channels: "iuc,conda-forge,bioconda,defaults"
+    conda_auto_install: "true"
+    conda_auto_init: "true"
+    tool_dependency_cache_dir: "{{ galaxy_tool_dependency_dir }}/_cache"
+    allow_user_impersonation: "true"
   uwsgi:
     # Default values
     http: 0.0.0.0:8080
