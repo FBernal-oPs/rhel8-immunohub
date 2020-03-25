@@ -11,6 +11,8 @@
       supervisorctl:
         name: galaxy
         state: restarted
+        supervisorctl_path: /usr/local/bin/supervisorctl
+        
   roles:
     - galaxyproject.postgresql
     - role: natefoo.postgresql_objects
