@@ -53,7 +53,13 @@
   include_tasks: start-page.yml
   when: galaxy_manage_static_setup
   tags: galaxy_default_start_welcome
-
+  
+  # Nikolay 
+- name: Include immunohub-configuration tasks
+  include_tasks: immunohub-configuration.yml
+  when: galaxy_manage_static_setup
+  tags: galaxy_immunohub-configuration
+  
 - name: Include dependency setup tasks
   include_tasks: dependencies.yml
   when: galaxy_fetch_dependencies

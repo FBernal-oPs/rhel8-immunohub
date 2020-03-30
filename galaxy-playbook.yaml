@@ -6,12 +6,17 @@
         name: ['git', 'make', 'python3-psycopg2', 'python3-virtualenv.noarch', 'bzip2', 'gcc']
     - name: Print ansible_os_family
       debug: var=ansible_os_family
+    - name: Ensure Supervisor is removed (any version).
+      pip:
+         name: supervisor
+         state: absent
+         
+  # systemd      
   handlers:
     - name: Restart Galaxy
-      supervisorctl:
+      systemd:
         name: galaxy
         state: restarted
-        supervisorctl_path: /usr/local/bin/supervisorctl
         
   roles:
     - galaxyproject.postgresql
@@ -21,6 +26,6 @@
     - geerlingguy.pip
     - galaxyproject.galaxy
     - uchida.miniconda
-    - role: usegalaxy-eu.supervisor
+    - role: usegalaxy_eu.galaxy_systemd
       become: true
       become_user: root
