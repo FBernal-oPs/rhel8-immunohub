@@ -2,6 +2,9 @@
 # in the terminal you can give it access with "setsebool -P nis_enabled 1"
 # THIS is done below here
 
+######## DEGUG WITH ##########
+## sealert -l "*" | less #####
+##############################
 
 # equivalent of
 # 1) semanage fcontext -a -t var_t "/srv/galaxy(/.*)?"
@@ -17,6 +20,12 @@
 - name: Set network persmissions for galaxy to use tcp-ports
   seboolean:
     name: nis_enabled
+    state: yes
+    persistent: yes
+    
+- name: Set mmap-permission for galaxy on files
+  seboolean:
+    name: domain_can_mmap_files
     state: yes
     persistent: yes
 
