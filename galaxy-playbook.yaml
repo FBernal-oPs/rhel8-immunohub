@@ -25,7 +25,8 @@
       become_user: postgres
     - geerlingguy.pip
     - galaxyproject.galaxy
-    - uchida.miniconda
-    - role: usegalaxy_eu.galaxy_systemd
+    - role: uchida.miniconda
       become: true
-      become_user: root
+      become_user: galaxy
+    - selinux.galaxy
+    - usegalaxy_eu.galaxy_systemd
