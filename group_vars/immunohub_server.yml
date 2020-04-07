@@ -56,7 +56,7 @@ galaxy_config: # from the galaxy tutorial
     dependency_resolvers_config_file: "config/dependency_resolvers_conf.xml"
     conda_exec: "{{ galaxy_tool_dependency_dir }}/_conda/bin/conda"
     conda_debug: "true"
-    conda_ensure_channels: "iuc,conda-forge,bioconda,defaults"
+    conda_ensure_channels: "iuc,conda-forge,bioconda,defaults,anaconda,r"
     conda_auto_install: "true"
     conda_auto_init: "true"
     tool_dependency_cache_dir: "{{ galaxy_tool_dependency_dir }}/_cache"
@@ -71,6 +71,8 @@ galaxy_config: # from the galaxy tutorial
     static-map:
       - /static/style={{ galaxy_server_dir }}/static/style/blue
       - /static={{ galaxy_server_dir }}/static
+      - /static/scripts/={{ galaxy_server_dir }}/static/scripts
+      - /client={{ galaxy_server_dir }}/client
     master: true
     virtualenv: "{{ galaxy_venv_dir }}"
     pythonpath: "{{ galaxy_server_dir }}/lib"
