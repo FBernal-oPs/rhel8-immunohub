@@ -38,9 +38,8 @@ galaxy_user: {name: galaxy, shell: /bin/bash}
 galaxy_commit_id: release_19.05 # from the galaxy tutorial
 galaxy_config_style: yaml
 galaxy_force_checkout: true
+galaxy_tool_dependency_dir: "{{ galaxy_mutable_data_dir }}/dependencies"
 miniconda_prefix: "{{ galaxy_tool_dependency_dir }}/_conda"
-#galaxy_tool_dependency_dir: "{{ galaxy_mutable_data_dir }}/dependencies"
-
 
 galaxy_config: # from the galaxy tutorial
   galaxy:
@@ -54,9 +53,10 @@ galaxy_config: # from the galaxy tutorial
     ## or in tasks/layout.yml
     integrated_tool_panel_config: "integrated_tool_panel.xml"
     dependency_resolvers_config_file: "config/dependency_resolvers_conf.xml"
+    conda_prefix: "{{ galaxy_tool_dependency_dir }}/_conda"
     conda_exec: "{{ galaxy_tool_dependency_dir }}/_conda/bin/conda"
     conda_debug: "true"
-    conda_ensure_channels: "iuc,conda-forge,bioconda,defaults,anaconda,r"
+    conda_ensure_channels: "iuc,conda-forge,bioconda,defaults"
     conda_auto_install: "true"
     conda_auto_init: "true"
     tool_dependency_cache_dir: "{{ galaxy_tool_dependency_dir }}/_cache"
