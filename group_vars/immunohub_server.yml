@@ -56,7 +56,7 @@ galaxy_config: # from the galaxy tutorial
     conda_prefix: "{{ galaxy_tool_dependency_dir }}/_conda"
     conda_exec: "{{ galaxy_tool_dependency_dir }}/_conda/bin/conda"
     conda_debug: "false"
-    conda_ensure_channels: "iuc,conda-forge,bioconda,defaults"
+    conda_ensure_channels: "iuc,conda-forge,bioconda,defaults,imperial-college-research-computing"
     conda_auto_install: "false"
     conda_auto_init: "true"
     tool_dependency_cache_dir: "{{ galaxy_tool_dependency_dir }}/_cache"
