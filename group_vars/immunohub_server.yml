@@ -61,6 +61,7 @@ galaxy_config: # from the galaxy tutorial
     conda_auto_init: "true"
     tool_dependency_cache_dir: "{{ galaxy_tool_dependency_dir }}/_cache"
     allow_user_impersonation: "true"
+    cleanup_job: never
   uwsgi:
     # Default values
     http: 0.0.0.0:8080
