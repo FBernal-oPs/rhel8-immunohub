@@ -1,0 +1,54 @@
+---
+# Edit tool data tables
+
+- name: Radka table data config
+  block:
+
+     - name: add table child
+       xml:
+          path: "{{ galaxy_server_dir }}/config/tool_data_table_conf.xml.sample"
+          xpath: /tables
+          add_children:
+            - table: vdjdb_values
+
+
+     - name: Add the 'comment_char' attribute
+       xml:
+          path: "{{ galaxy_server_dir }}/config/tool_data_table_conf.xml.sample"
+          xpath: /tables/table/vdjdb_values
+          attribute: comment_char
+          value: "#"
+    
+    
+     - name: Add the 'allow_duplicate_entries' attribute
+       xml:
+          path: "{{ galaxy_server_dir }}/config/tool_data_table_conf.xml.sample"
+          xpath: /tables/table/vdjdb_values
+          attribute: allow_duplicate_entries
+          value: "False"
+
+
+     - name: Add a 'columns' element
+       xml:
+          path: "{{ galaxy_server_dir }}/config/tool_data_table_conf.xml.sample"
+          xpath: /tables/table/vdjdb_values/columns
+          value: "name, value, attribute"
+     
+     
+     - name: Add a 'file' element
+       xml:
+          path: "{{ galaxy_server_dir }}/config/tool_data_table_conf.xml.sample"
+          xpath: /tables/table/vdjdb_values/file
+    
+    
+     - name: Add the 'allow_duplicate_entries' attribute
+       xml:
+          path: "{{ galaxy_server_dir }}/config/tool_data_table_conf.xml.sample"
+          xpath: /tables/table/vdjdb_values/file
+          attribute: path
+          value: "{{ galaxy_server_dir }}/tool-data/vdjdb_values.loc"
+
+  remote_user: "{{ galaxy_remote_users.galaxy | default(omit) }}"
+  become: "{{ true if galaxy_become_users.galaxy is defined else __galaxy_become }}"
+  become_user: "{{ galaxy_become_users.galaxy | default(ansible_user_id) }}"
+

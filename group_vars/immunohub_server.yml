@@ -3,11 +3,6 @@
 # host variables
 ansible_connection: ssh
 ansible_ssh_private_key_file: "/uio/kant/usit-ft-u1/nikolaiv/galaxy-ImmunoHub-playbooks/certificates/ssh_certs/id_rsa"
-#ansible_become: yes
-#ansible_become_user: "root"
-#ansible_user: "nikolaiv"
-#ansible_become_method: sudo
-#ansible_become_pass: "{{ immunohub_server_sudo_pass }}"
 become: yes
 become_user: "root"
 ansible_user: "nikolaiv"
@@ -62,6 +57,8 @@ galaxy_config: # from the galaxy tutorial
     tool_dependency_cache_dir: "{{ galaxy_tool_dependency_dir }}/_cache"
     allow_user_impersonation: "true"
     cleanup_job: never
+    # Added for Radka 5.06.2020
+    tool_data_path: "{{ galaxy_server_dir }}/tool-data"
   uwsgi:
     # Default values
     http: 0.0.0.0:8080

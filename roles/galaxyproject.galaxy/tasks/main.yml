@@ -60,6 +60,12 @@
   when: galaxy_manage_static_setup
   tags: galaxy_immunohub-configuration
   
+  # Nikolay 
+- name: Include radka_edit_table_tool_data_conf tasks
+  include_tasks: radka_edit_table_tool_data_conf.yml
+  when: galaxy_manage_static_setup
+  tags: galaxy_radka_edit_table_tool_data
+  
 - name: Include dependency setup tasks
   include_tasks: dependencies.yml
   when: galaxy_fetch_dependencies
