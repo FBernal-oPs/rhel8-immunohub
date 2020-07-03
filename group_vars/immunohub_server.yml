@@ -59,6 +59,7 @@ galaxy_config: # from the galaxy tutorial
     cleanup_job: never
     # Added for Radka 5.06.2020
     tool_data_path: "{{ galaxy_server_dir }}/tool-data"
+    tool_config_file: "{{ galaxy_server_dir }}/config/immunohub_tool_conf.xml,{{ galaxy_mutable_data_dir }}/config/shed_tool_conf.xml"
   uwsgi:
     # Default values
     http: 0.0.0.0:8080
