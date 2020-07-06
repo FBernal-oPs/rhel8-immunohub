@@ -6,10 +6,6 @@
         name: ['git', 'make', 'python3-psycopg2', 'python3-virtualenv.noarch', 'bzip2', 'gcc', 'python3-lxml']
     - name: Print ansible_os_family
       debug: var=ansible_os_family
-    - name: Ensure Supervisor is removed (any version).
-      pip:
-         name: supervisor
-         state: absent
          
   # systemd      
   handlers:
