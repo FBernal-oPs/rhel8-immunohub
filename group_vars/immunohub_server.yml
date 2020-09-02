@@ -39,7 +39,7 @@ miniconda_prefix: "{{ galaxy_tool_dependency_dir }}/_conda"
 galaxy_config: # from the galaxy tutorial
   galaxy:
     brand: "Immunohub Galaxy Instance"
-    admin_users: nikolaiv@uio.no,n.a.vazov@usit.uio.no,radmilko@ifi.uio.no,milenpa@student.matnat.uio.no
+    admin_users: vazovn@abv.bg,nikolaiv@uio.no,n.a.vazov@usit.uio.no,radmilko@ifi.uio.no,milenpa@student.matnat.uio.no
     database_connection: "postgresql:///galaxy?host=/var/run/postgresql"
     file_path: "/srv/galaxy_data"
     check_migrate_tools: false
@@ -57,7 +57,9 @@ galaxy_config: # from the galaxy tutorial
     tool_dependency_cache_dir: "{{ galaxy_tool_dependency_dir }}/_cache"
     allow_user_impersonation: "true"
     cleanup_job: never
-    # Added for Radka 5.06.2020
+   # Mail configuration added 20 Aug 2020
+    smtp_server: smtp.uio.no
+   # Added for Radka 5.06.2020
     tool_data_path: "{{ galaxy_server_dir }}/tool-data"
     tool_config_file: "{{ galaxy_server_dir }}/config/immunohub_tool_conf.xml,{{ galaxy_mutable_data_dir }}/config/shed_tool_conf.xml"
   uwsgi:
