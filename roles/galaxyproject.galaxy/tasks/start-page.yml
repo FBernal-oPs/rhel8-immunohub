@@ -3,7 +3,12 @@
 
 - name: Start setup
   block:
-  
+
+    - name: Copy the Immunohub customized welcome page
+      copy: 
+        src: "{{ role_path }}/files/welcome.html.immunohub"      
+        dest: "{{ galaxy_server_dir }}/static/welcome.html.immunohub"
+
     - name: Set default welcome page
       command: cp {{ item.src }} {{ item.dest }}
       args:

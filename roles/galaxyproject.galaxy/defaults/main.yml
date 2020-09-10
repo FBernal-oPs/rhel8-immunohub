@@ -223,7 +223,7 @@ galaxy_mutable_configs:
 # Nikolay    
 # Automatically set start pages
 galaxy_default_start_welcome:
-  - src: "{{ galaxy_server_dir }}/static/welcome.html.sample"
+  - src: "{{ galaxy_server_dir }}/static/welcome.html.immunohub"
     dest: "{{ galaxy_server_dir }}/static/welcome.html"
 
 galaxy_config_error_email_to: "{{ galaxy_config_merged[galaxy_app_config_section].error_email_to | default('') }}"

@@ -49,7 +49,7 @@
   tags: galaxy_config_files
   
   # Nikolay 
-- name: Include start-page tasks
+- name: Include start-page tasks and adding customized immuno welcome page
   include_tasks: start-page.yml
   when: galaxy_manage_static_setup
   tags: galaxy_default_start_welcome
