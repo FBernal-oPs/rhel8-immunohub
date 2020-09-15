@@ -15,6 +15,12 @@
     setype: var_t
     state: present
 
+- name: Set selinux-fcontext for /storage/galaxy_data
+  sefcontext:
+    target: '/storage/galaxy_data(/.*)?'
+    setype: var_t
+    state: present
+
 
 # in ansible that will be something like this, then you will kind off have a sort of documentation on what is done as well, so I recomend putting it ansible (you can do it in the terminal as well).
 - name: Set network persmissions for galaxy to use tcp-ports
