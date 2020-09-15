@@ -41,7 +41,12 @@ galaxy_config: # from the galaxy tutorial
     brand: "Immunohub Galaxy Instance"
     admin_users: vazovn@abv.bg,nikolaiv@uio.no,n.a.vazov@usit.uio.no,radmilko@ifi.uio.no,milenpa@student.matnat.uio.no
     database_connection: "postgresql:///galaxy?host=/var/run/postgresql"
-    file_path: "/srv/galaxy_data"
+    # changes made on 15 sept 2020
+    #file_path: "/srv/galaxy_data"
+    file_path: "/storage/galaxy_data/files"
+    new_file_path:"/storage/galaxy_data/tmp"
+    template_cache_path: "/storage/galaxy_data/compiled_templates
+    job_working_directory: "/storage/galaxy_data/jobs_directory
     check_migrate_tools: false
     shed_tool_data_dir: "{{ galaxy_mutable_data_dir }}/tool-data"
     ## NEW 23 march added 'galaxy_tool_dependency_dir' to galaxy vars above 
