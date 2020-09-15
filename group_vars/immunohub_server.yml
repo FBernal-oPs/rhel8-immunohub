@@ -43,7 +43,7 @@ galaxy_config: # from the galaxy tutorial
     database_connection: "postgresql:///galaxy?host=/var/run/postgresql"
     # changes made on 15 sept 2020
     #file_path: "/srv/galaxy_data"
-    file_path: "/storage/galaxy_data/files"
+    file_path: "/storage/galaxy_data/"
     new_file_path: "/storage/galaxy_data/tmp"
     template_cache_path: "/storage/galaxy_data/compiled_templates"
     job_working_directory: "/storage/galaxy_data/jobs_directory"
