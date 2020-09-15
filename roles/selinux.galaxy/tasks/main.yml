@@ -19,6 +19,7 @@
   sefcontext:
     target: '/storage/galaxy_data(/.*)?'
     setype: var_t
+    seuser: system_u
     state: present
 
 
