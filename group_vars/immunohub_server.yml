@@ -39,7 +39,7 @@ miniconda_prefix: "{{ galaxy_tool_dependency_dir }}/_conda"
 galaxy_config: # from the galaxy tutorial
   galaxy:
     brand: "Immunohub Galaxy Instance"
-    admin_users: vazovn@abv.bg,nikolaiv@uio.no,n.a.vazov@usit.uio.no,radmilko@ifi.uio.no,milenpa@student.matnat.uio.no
+    admin_users: vazovn@abv.bg,nikolaiv@uio.no,n.a.vazov@usit.uio.no,radmilko@ifi.uio.no,milenpa@student.matnat.uio.no,lonnekes@student.matnat.uio.no
     database_connection: "postgresql:///galaxy?host=/var/run/postgresql"
     # changes made on 15 sept 2020
     #file_path: "/srv/galaxy_data"
