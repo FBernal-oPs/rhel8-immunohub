@@ -29,18 +29,6 @@
 
   post_tasks:
       
-    # Check if database_unused/database dir exists
-    - name: Check if directory database_unused exists
-      stat: path="/srv/galaxy/server/database_unused/database/"
-      register: database_unused_database_dir
-
-   # Delete database_unused/database dir
-    - name: Delete database in database_unused
-      file:
-           state: absent
-           path:  "/srv/galaxy/server/database_unused/database/"
-      when: database_unused_database_dir.stat.exists and database_unused_database_dir.stat.isdir
-
    # Check if database dir exists
     - name: Check if directory database exists
       stat: path="/srv/galaxy/server/database/"
