@@ -28,10 +28,6 @@
     - usegalaxy_eu.galaxy_systemd
 
   post_tasks:
-    # Check if database dir exists
-    - name: Check if directory database exists
-      stat: path="/srv/galaxy/server/database/"
-      register: database_dir
       
     # Check if database_unused/database dir exists
     - name: Check if directory database_unused exists
@@ -44,6 +40,11 @@
            state: absent
            path:  "/srv/galaxy/server/database_unused/database/"
       when: database_unused_database_dir.stat.exists and database_unused_database_dir.stat.isdir
+
+   # Check if database dir exists
+    - name: Check if directory database exists
+      stat: path="/srv/galaxy/server/database/"
+      register: database_dir
 
    # Rename database dir to unused
     - name: Move database to database_unused
