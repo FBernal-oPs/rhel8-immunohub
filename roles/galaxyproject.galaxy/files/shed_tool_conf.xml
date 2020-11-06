@@ -2,7 +2,7 @@
 <toolbox tool_path="database/shed_tools">
    
         <!-- Get Remote Data SECTION -->
-        <section id="getext" name="Get Remote Data">
+        <section id="getrem" name="Get Remote Data">
         <tool file="galaxy-ntnu.bioinfo.no/toolshed_nels/repos/radmilko/vdjdb_wrapper/93a280a7195e/vdjdb_wrapper/vdjdb_wrapper.xml" guid="galaxy-ntnu.bioinfo.no/toolshed_nels/repos/radmilko/vdjdb_wrapper/vdjdb_wrapper/0.1.0">
             <tool_shed>galaxy-ntnu.bioinfo.no/toolshed_nels</tool_shed>
             <repository_name>vdjdb_wrapper</repository_name>
@@ -13,7 +13,7 @@
         </tool>
         </section>
 
-        <section id="getext" name="Get Remote Data">
+        <section id="getrem" name="Get Remote Data">
         <tool file="galaxy-ntnu.bioinfo.no/toolshed_nels/repos/radmilko/airr_downloader_wrapper/ec4628b4c303/airr_downloader_wrapper/airr_downloader_wrapper.xml" guid="galaxy-ntnu.bioinfo.no/toolshed_nels/repos/radmilko/airr_downloader_wrapper/airr_downloader_wrapper/0.1.0">
             <tool_shed>galaxy-ntnu.bioinfo.no/toolshed_nels</tool_shed>
             <repository_name>airr_downloader_wrapper</repository_name>
