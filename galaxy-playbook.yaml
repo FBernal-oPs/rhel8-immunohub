@@ -33,12 +33,6 @@
       stat: path=/srv/galaxy/server/database
       register: database_dir
 
-   # Delete database dir in database_unused if it exists
-    - name: Remove directory
-      file:
-        path: /srv/galaxy/server/database_unused/database
-        state: absent
-
    # Rename database dir to unused
     - name: Move database to database_unused
       command: mv /srv/galaxy/server/database  /srv/galaxy/server/database_unused
