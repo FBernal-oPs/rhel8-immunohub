@@ -64,9 +64,9 @@ galaxy_config: # from the galaxy tutorial
     cleanup_job: never
    # Mail configuration added 20 Aug 2020
     smtp_server: smtp.uio.no
-   # Added for Radka 5.06.2020
+   # Added for Radka 5.06.2020 modified for reordering 6.11.2020
     tool_data_path: "{{ galaxy_server_dir }}/tool-data"
-    tool_config_file: "{{ galaxy_mutable_data_dir }}/config/shed_tool_conf.xml,{{ galaxy_server_dir }}/config/immunohub_tool_conf.xml"
+    tool_config_file: "{{ galaxy_mutable_data_dir }}/config/shed_tool_conf.xml"
    # Added for Geir-Kjetil on 14 sept 2020
     error_email_to: 'geirkjetilsandve1+injbqoyi5aojs59jcqtz@boards.trello.com'
   uwsgi:
